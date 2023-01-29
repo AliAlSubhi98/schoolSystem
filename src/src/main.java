@@ -1,5 +1,6 @@
 package src;
 
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Main {
@@ -204,30 +205,61 @@ public class Main {
 			case "5": // print all
 						// _____________________________________________________________________
 				enterPrintCount++;
-				if (mySchool.studentList.size() == 0) {
-					System.out.println("Please Enter Student First");
-					break;
-				} else if (mySchool.subjectArray.size() == 0) {
-					System.out.println("Please Enter Subject First");
-					break;
-				} else {
+				System.out.println("Choose : 1 / 2 ");
+				System.out.println("[1] Download Transcript");
+				System.out.println("[2] Show Transcript");
+				String transcriptChoose = sc.next();
+				try {
+					Integer transcrptChooseX = Integer.parseInt(transcriptChoose);
+					if (transcrptChooseX == 1) {
+					    try (FileWriter Transcript = new FileWriter("FILENAME.txt", true)) {
+							Transcript.write(String.format("%20s %20s %30s %20s %20s\n", "SchoolName", "StudentName", "StudentMail",
+									"Subject", "Mark"));
+							for (int i = 0; i < mySchool.studentList.size(); i++) {
+								for (int j = 0; j < mySchool.subjectArray.size(); j++) {
+								Transcript.write(String.format("%20s %20s %30s %20s %20s\n", mySchool.name,
+											mySchool.studentList.get(i).name,
+											mySchool.studentList.get(i).emailAddresses, mySchool.subjectArray.get(j),
+											mySchool.studentList.get(i).studentSubjectList.get(j).mark.marks));
+								}
+								System.out.println("THE TRANSCRIPT DOWNLOADED SUCCESSFULLY");
+							}
+						}
+					} else if (transcrptChooseX == 2) {
+						if (mySchool.studentList.size() == 0) {
+							System.out.println("Please Enter Student First");
+							break;
+						} else if (mySchool.subjectArray.size() == 0) {
+							System.out.println("Please Enter Subject First");
+							break;
+						} else {
 
-					System.out.printf("%20s %20s %30s %20s %20s\n", "SchoolName", "StudentName", "StudentMail",
-							"Subject", "Mark");
-					System.out.println(
-							"_______________________________________________________________________________________________________________________");
-					for (int i = 0; i < mySchool.studentList.size(); i++) {
-						for (int j = 0; j < mySchool.subjectArray.size(); j++) {
-							System.out.printf("%20s %20s %30s %20s %20s\n", mySchool.name,
-									mySchool.studentList.get(i).name, mySchool.studentList.get(i).emailAddresses,
-									mySchool.subjectArray.get(j),
-									mySchool.studentList.get(i).studentSubjectList.get(j).mark.marks);
+							System.out.printf("%20s %20s %30s %20s %20s\n", "SchoolName", "StudentName", "StudentMail",
+									"Subject", "Mark");
+							System.out.println(
+									"_______________________________________________________________________________________________________________________");
+							for (int i = 0; i < mySchool.studentList.size(); i++) {
+								for (int j = 0; j < mySchool.subjectArray.size(); j++) {
+									System.out.printf("%20s %20s %30s %20s %20s\n", mySchool.name,
+											mySchool.studentList.get(i).name,
+											mySchool.studentList.get(i).emailAddresses, mySchool.subjectArray.get(j),
+											mySchool.studentList.get(i).studentSubjectList.get(j).mark.marks);
+								}
+							}
 						}
 					}
+
+					else {
+						System.out.println("Enter valid Input (1 / 2)");
+					}
 				}
+
+				catch (Exception e) {
+					System.out.println("Error in Transcript");
+				}
+
 				break;
-			case "6": // search
-						// Student_________________________________________________________________
+			case "6": // searchStudent_________________________________________________________________
 				enterSearchCount++;
 				System.out.println("Enter Student Name to Search ");
 				String search = sc.next();
@@ -274,4 +306,6 @@ public class Main {
 		sc.close();
 
 	}
+
+	
 }

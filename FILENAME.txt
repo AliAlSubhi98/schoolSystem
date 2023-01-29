@@ -1,0 +1,7 @@
+          SchoolName          StudentName                    StudentMail              Subject                 Mark
+         SAMI_School                  Ali                     [@ali.com]                 Math                   99
+         SAMI_School                  Ali                     [@ali.com]                  Bio                   88
+         SAMI_School               Nidhal                  [@Nidhal.com]                 Math                   77
+         SAMI_School               Nidhal                  [@Nidhal.com]                  Bio                   66
+         SAMI_School                Ahmed                             []                 Math                    0
+         SAMI_School                Ahmed                             []                  Bio                    0
