@@ -104,8 +104,7 @@ public class Main {
 					System.out.println("Enter Student First to add Marks ");
 				} else if (mySchool.subjectArray.size() == 0) {
 					System.out.println("Enter Subject Frist ");
-				} 
-				else {
+				} else {
 					for (int i = 0; i < mySchool.studentList.size(); i++) {
 						System.out.println("[" + (i + 1) + "]" + mySchool.studentList.get(i).name);
 					}
@@ -141,6 +140,7 @@ public class Main {
 										} else {
 											System.out.println("enter 'y' to enter mark for other Subject ");
 											System.out.println("enter 'n' to go back ");
+											break;
 										}
 									}
 								} else {
@@ -158,52 +158,71 @@ public class Main {
 			case "4": // Enter Email For Student
 						// __________________________________________________________
 				enterMailCount++;
-				for (int i = 0; i < mySchool.studentList.size(); i++) {
-					System.out.println("[" + (i + 1) + "]" + mySchool.studentList.get(i).name);
-				}
 				boolean mailing = true;
 				while (mailing) {
+					for (int i = 0; i < mySchool.studentList.size(); i++) {
+						System.out.println("[" + (i + 1) + "]" + mySchool.studentList.get(i).name);
+					}
 					System.out.println("Select Student # to add an email  ");
-					int stdNum1 = sc.nextInt() - 1;
-					if (stdNum1 < 0 || stdNum1 > mySchool.studentList.size()) {
-						System.out.println("Number of Student NOT included ");
-					} else {
-						boolean repeat2 = true;
-						while (repeat2) {
-							System.out.println("Enter The Email for Student : ");
-							String inMail = sc.next();
-							mySchool.studentList.get(stdNum1).mail = inMail;
-							System.out.println("Do you want to add more E-Mails?? (y-n) ");
-							String moreMail = sc.next();
-							while (true) {
-								if (moreMail.equalsIgnoreCase("y")) {
-									repeat2 = false;
-									break;
-								} else if (moreMail.equalsIgnoreCase("n")) {
-									repeat2 = false;
-									mailing = false;
-									break;
-								} else {
-									System.out.println("Enter (y) to add mail (n) to back");
+					String stdNum11 = sc.next();
+					try {
+						Integer stdNum1 = Integer.parseInt(stdNum11) - 1;
+
+						if (stdNum1 < 0 || stdNum1 > mySchool.studentList.size()) {
+							System.out.println("Number of Student NOT included ");
+						} else {
+							boolean repeat2 = true;
+							while (repeat2) {
+								System.out.println("Enter The Email for Student : ");
+								String inMail = sc.next();
+								mySchool.studentList.get(stdNum1).emailAddresses.add(inMail);
+								while (true) {
+									System.out.println("Do you want to add more E-Mails?? (y-n) ");
+									String moreMail = sc.next();
+
+									if (moreMail.equalsIgnoreCase("y")) {
+										repeat2 = false;
+										mailing = true;
+										break;
+									} else if (moreMail.equalsIgnoreCase("n")) {
+										repeat2 = false;
+										mailing = false;
+										break;
+									} else {
+										System.out.println("Enter (y) to add mail (n) to back");
+
+									}
 								}
 							}
 
 						}
+					} catch (Exception e) {
+						System.err.println("try again and Choose Correct NUMBER :) ");
 					}
 				}
 				break;
 			case "5": // print all
 						// _____________________________________________________________________
 				enterPrintCount++;
-				System.out.printf("%20s %20s %30s %20s %20s\n", "SchoolName", "StudentName", "StudentMail", "Subject",
-						"Mark");
-				System.out.println(
-						"_______________________________________________________________________________________________________________________");
-				for (int i = 0; i < mySchool.studentList.size(); i++) {
-					for (int j = 0; j < mySchool.subjectArray.size(); j++) {
-						System.out.printf("%20s %20s %30s %20s %20s\n", mySchool.name, mySchool.studentList.get(i).name,
-								mySchool.studentList.get(i).mail, mySchool.subjectArray.get(j),
-								mySchool.studentList.get(i).studentSubjectList.get(j).mark.marks);
+				if (mySchool.studentList.size() == 0) {
+					System.out.println("Please Enter Student First");
+					break;
+				} else if (mySchool.subjectArray.size() == 0) {
+					System.out.println("Please Enter Subject First");
+					break;
+				} else {
+
+					System.out.printf("%20s %20s %30s %20s %20s\n", "SchoolName", "StudentName", "StudentMail",
+							"Subject", "Mark");
+					System.out.println(
+							"_______________________________________________________________________________________________________________________");
+					for (int i = 0; i < mySchool.studentList.size(); i++) {
+						for (int j = 0; j < mySchool.subjectArray.size(); j++) {
+							System.out.printf("%20s %20s %30s %20s %20s\n", mySchool.name,
+									mySchool.studentList.get(i).name, mySchool.studentList.get(i).emailAddresses,
+									mySchool.subjectArray.get(j),
+									mySchool.studentList.get(i).studentSubjectList.get(j).mark.marks);
+						}
 					}
 				}
 				break;
