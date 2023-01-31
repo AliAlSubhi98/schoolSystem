@@ -225,8 +225,10 @@ public class Main {
 								"C:\\Users\\Lenovo\\eclipse-workspace\\schoolSystem-main.zip_expanded\\schoolSystem-main\\test\\test.txt",
 								
 								true)) {
+							fw.write("\n---------------------------------------------------------------------------------------------------------------------\n");
 							fw.write(String.format("%20s %20s %30s %20s %20s\n", "SchoolName", "StudentName",
 									"StudentMail", "Subject", "Mark"));
+							fw.write("---------------------------------------------------------------------------------------------------------------------\n");
 							for (int i = 0; i < mySchool.studentList.size(); i++) {
 								for (int j = 0; j < mySchool.subjectArray.size(); j++) {
 									fw.write(String.format("%20s %20s %30s %20s %20s\n", mySchool.name,
