@@ -1,5 +1,8 @@
 package src;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
 
@@ -202,30 +205,63 @@ public class Main {
 					}
 				}
 				break;
-			case "5": // print all
-						// _____________________________________________________________________
+			case "5": // print
+						// all_____________________________________________________________________
 				enterPrintCount++;
 				System.out.println("Choose : 1 / 2 ");
 				System.out.println("[1] Download Transcript");
-				System.out.println("[2] Show Transcript");
+				System.out.println("[2] Search for a any words in txt.file");
+				System.out.println("[2] Download Transcript with serilization");
+				System.out.println("[4] Show Transcript");
 				String transcriptChoose = sc.next();
 				try {
 					Integer transcrptChooseX = Integer.parseInt(transcriptChoose);
 					if (transcrptChooseX == 1) {
-					    try (FileWriter Transcript = new FileWriter("FILENAME.txt", true)) {
-							Transcript.write(String.format("%20s %20s %30s %20s %20s\n", "SchoolName", "StudentName", "StudentMail",
-									"Subject", "Mark"));
-							for (int i = 0; i < mySchool.studentList.size(); i++) {
-								for (int j = 0; j < mySchool.subjectArray.size(); j++) {
-								Transcript.write(String.format("%20s %20s %30s %20s %20s\n", mySchool.name,
-											mySchool.studentList.get(i).name,
-											mySchool.studentList.get(i).emailAddresses, mySchool.subjectArray.get(j),
-											mySchool.studentList.get(i).studentSubjectList.get(j).mark.marks));
+							File file = new File("C:/Users/BlackDell/eclipse-workspace/School/test/test");
+							file.getParentFile().mkdirs();
+							file.createNewFile();
+							try (FileWriter fw = new FileWriter("C:/Users/BlackDell/eclipse-workspace/School/test/test.txt",true)) {
+								fw.write(String.format("%20s %20s %30s %20s %20s\n", "SchoolName", "StudentName",
+										"StudentMail", "Subject", "Mark"));
+								for (int i = 0; i < mySchool.studentList.size(); i++) {
+									for (int j = 0; j < mySchool.subjectArray.size(); j++) {
+										fw.write(String.format("%20s %20s %30s %20s %20s\n", mySchool.name,
+												mySchool.studentList.get(i).name,
+												mySchool.studentList.get(i).emailAddresses, mySchool.subjectArray.get(j),
+												mySchool.studentList.get(i).studentSubjectList.get(j).mark.marks));
+									}
 								}
-								System.out.println("THE TRANSCRIPT DOWNLOADED SUCCESSFULLY");
+							}
+							System.out.println("THE TRANSCRIPT DOWNLOADED SUCCESSFULLY");
+					} else if (transcrptChooseX == 2) {
+					//	File f1=new File("input.txt"); //Creation of File Descriptor for input file
+						String[] words=null;
+						FileReader fr = new FileReader("Transcript.txt");
+						BufferedReader br = new BufferedReader(fr);
+						String s;
+						System.out.println("Enter word to search in the file");
+						String input = sc.next();
+						int counter=0;
+						while((s=br.readLine())!=null) { //Reading Content from the file
+							words=s.split(" ");// split words use spaces
+							for(String word : words) {
+								if(word.equals(input)) {
+									counter++;
+								}
 							}
 						}
-					} else if (transcrptChooseX == 2) {
+						if (counter !=0) {// counter not equal 0
+							System.out.println("the word "+input + " present for "+counter+" times in the file");
+						}
+						else {
+							System.out.println("the word "+ input+ " does not found in the file");
+						}
+						br.close();
+						break;
+					} else if (transcrptChooseX == 3) {
+						System.out.println("wait for the update soon..");
+						break;
+					} else if (transcrptChooseX == 4) {
 						if (mySchool.studentList.size() == 0) {
 							System.out.println("Please Enter Student First");
 							break;
@@ -307,5 +343,4 @@ public class Main {
 
 	}
 
-	
 }
