@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -217,18 +218,19 @@ public class Main {
 				try {
 					Integer transcrptChooseX = Integer.parseInt(transcriptChoose);
 					if (transcrptChooseX == 1) {
-						File file = new File(
-								"C:\\Users\\Lenovo\\eclipse-workspace\\schoolSystem-main.zip_expanded\\schoolSystem-main");
-						file.getParentFile().mkdirs();
-						file.createNewFile();
-						try (FileWriter fw = new FileWriter(
-								"C:\\Users\\Lenovo\\eclipse-workspace\\schoolSystem-main.zip_expanded\\schoolSystem-main\\test\\test.txt",
-								
-								true)) {
-							fw.write("\n---------------------------------------------------------------------------------------------------------------------\n");
+						File folder = new File("C:\\Users\\Lenovo\\Documents\\Transcript");
+						if (!folder.exists()) { // check if the folder not exist
+							folder.mkdir(); // if not - create folder
+						}
+						File myFile = new File("C:\\Users\\Lenovo\\Documents\\Transcript\\Transcript.txt");
+						try {
+							FileWriter fw = new FileWriter(myFile, true);
+							fw.write(
+									"\n---------------------------------------------------------------------------------------------------------------------\n");
 							fw.write(String.format("%20s %20s %30s %20s %20s\n", "SchoolName", "StudentName",
 									"StudentMail", "Subject", "Mark"));
-							fw.write("---------------------------------------------------------------------------------------------------------------------\n");
+							fw.write(
+									"---------------------------------------------------------------------------------------------------------------------\n");
 							for (int i = 0; i < mySchool.studentList.size(); i++) {
 								for (int j = 0; j < mySchool.subjectArray.size(); j++) {
 									fw.write(String.format("%20s %20s %30s %20s %20s\n", mySchool.name,
@@ -237,12 +239,17 @@ public class Main {
 											mySchool.studentList.get(i).studentSubjectList.get(j).mark.marks));
 								}
 							}
+							fw.close();
+							System.out.println("THE TRANSCRIPT DOWNLOADED SUCCESSFULLY");
+						} catch (IOException e) {
+							System.out.println("Error in FileWriter");
+							e.printStackTrace();
 						}
-						System.out.println("THE TRANSCRIPT DOWNLOADED SUCCESSFULLY");
 					} else if (transcrptChooseX == 2) {
 						// File f1=new File("input.txt"); //Creation of File Descriptor for input file
 						String[] words = null;
-						FileReader fr = new FileReader("C:\\Users\\Lenovo\\eclipse-workspace\\schoolSystem-main.zip_expanded\\schoolSystem-main\\test\\test.txt");
+						FileReader fr = new FileReader(
+								"C:\\Users\\Lenovo\\eclipse-workspace\\schoolSystem-main.zip_expanded\\schoolSystem-main\\test\\test.txt");
 						BufferedReader br = new BufferedReader(fr);
 						String s;
 						System.out.println("Enter word to search in the file");

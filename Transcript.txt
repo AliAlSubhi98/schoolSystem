@@ -1,7 +1,0 @@
-          SchoolName          StudentName                    StudentMail              Subject                 Mark
-          Ali_SHCOOL                  Ali                        [1@ALI]                 Math                   12
-          Ali_SHCOOL                  Ali                        [1@ALI]               Arabic                   13
-          Ali_SHCOOL                Ahmed                      [2@AHMED]                 Math                   88
-          Ali_SHCOOL                Ahmed                      [2@AHMED]               Arabic                   77
-          Ali_SHCOOL                  Ali                        [3@ALI]                 Math                   44
-          Ali_SHCOOL                  Ali                        [3@ALI]               Arabic                   55
