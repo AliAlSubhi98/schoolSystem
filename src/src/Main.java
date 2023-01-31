@@ -32,7 +32,7 @@ public class Main {
 			System.out.println("[8] Exit");
 			String action = sc.next();
 			switch (action) {
-			case "1": // setup school Details_______________________________
+			case "1": // setup school Details________________________________
 				enterSetupCount++;
 				boolean case1 = true;
 				while (case1) {
