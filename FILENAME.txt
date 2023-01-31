@@ -6,7 +6,7 @@
          SAMI_School                Ahmed                             []                 Math                    0
          SAMI_School                Ahmed                             []                  Bio                    0
           SchoolName          StudentName                    StudentMail              Subject                 Mark
-                fack             sulaiman                             []                  kkk                   99
+                test             sulaiman                             []                  kkk                   99
           SchoolName          StudentName                    StudentMail              Subject                 Mark
                 java                  Ali                             []                 math                   99
                 java                  Ali                             []               arabic                   11
