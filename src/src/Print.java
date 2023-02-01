@@ -22,8 +22,8 @@ public class Print {
 					FileWriter fw = new FileWriter(myFile, true);
 					fw.write(
 							"\n---------------------------------------------------------------------------------------------------------------------\n");
-					fw.write(String.format("%20s %20s %30s %20s %20s\n", "SchoolName", "StudentName",
-							"StudentMail", "Subject", "Mark"));
+					fw.write(String.format("%20s %20s %30s %20s %20s\n", "SchoolName", "StudentName", "StudentMail",
+							"Subject", "Mark"));
 					fw.write(
 							"---------------------------------------------------------------------------------------------------------------------\n");
 					for (int i = 0; i < Main.mySchool.studentList.size(); i++) {
@@ -64,8 +64,10 @@ public class Print {
 				}
 				br.close();
 			} else if (transcrptChooseX == 3) {
-				System.out.println("wait for the update soon..");
+				Serial1.serialize();
 			} else if (transcrptChooseX == 4) {
+				Serial1.dserialize();
+			} else if (transcrptChooseX == 5) {
 				if (Main.mySchool.studentList.size() == 0) {
 					System.out.println("Please Enter Student First");
 				} else if (Main.mySchool.subjectArray.size() == 0) {
@@ -84,12 +86,10 @@ public class Print {
 						}
 					}
 				}
-			}
-			else {
+			} else {
 				System.out.println("Enter valid Input (1 / 2)");
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("Error in Transcript");
 		}
 	}

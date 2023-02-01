@@ -29,8 +29,9 @@ public class Menu {
 		System.out.println("Choose : 1 / 2 ");
 		System.out.println("[1] Download Transcript");
 		System.out.println("[2] Search for a any words in txt.file");
-		System.out.println("[2] Download Transcript with serilization");
-		System.out.println("[4] Show Transcript");
+		System.out.println("[3] Download Transcript with serilization");
+		System.out.println("[4] Deserilization The Transcript");
+		System.out.println("[5] Show Transcript");
 	}
 	public static void showStatsitics() {
 		System.out.println(
